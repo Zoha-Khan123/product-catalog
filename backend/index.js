@@ -9,8 +9,12 @@ const app = express()
 
 // middleware
 app.use(express.json())
-app.use(cors());
-
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://product-catalog-3mne.vercel.app"
+  ]
+}));
 
 // routes
 app.use("/api/products",productRoute)

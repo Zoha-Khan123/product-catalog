@@ -8,26 +8,41 @@ const Navbar = () => {
   const [toggle,setToggle] = useState(false);
   return(
     <>
-   <div className="shadow p-[1rem] flex justify-between">
-      <div>Navbar</div>
-      {
-        toggle ? <IoMdClose className="z-10 block md:hidden cursor-pointer" onClick={()=>setToggle(false)}/> : <FaBars className="z-10 block md:hidden cursor-pointer" onClick={()=>setToggle(true)}/>
-      }
-      <ul className="hidden gap-10 md:flex">
-        <li className="cursor-pointer"><Link to="/home">Home</Link></li>
-        <li className="cursor-pointer"><Link to="/product">Product</Link></li>
-        <li className="cursor-pointer"><Link to="/create-form">Create Form</Link></li>
-        <li className="cursor-pointer"><Link to="/auth/login">Login</Link></li>
-      </ul>
+     <header className="fixed top-0 left-0 w-full z-40 bg-white shadow-md">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        {/* Logo */}
+        <div className="text-xl font-bold text-purple-700"><Link to="/">MyStore</Link></div>
 
-      {/* Responsive */}
-<ul className={`w-[60%] h-screen fixed top-0 flex justify-center items-center gap-10 flex-col md:hidden transition-all duration-500 ease-in-out ${toggle ? 'right-0' : 'right-[-100%]'}`}>
-        <li className="cursor-pointer"><Link to="/home">Home</Link></li>
-        <li className="cursor-pointer"><Link to="/product">Product</Link></li>
-        <li className="cursor-pointer"><Link to="/create-form">Create Form</Link></li>
-        <li className="cursor-pointer"><Link to="/auth/login">Login</Link></li>
+        {/* Desktop Links */}
+        <ul className="hidden md:flex gap-8 text-gray-700 font-medium">
+          <li className="hover:text-purple-700 transition"><Link to="/">Home</Link></li>
+          <li className="hover:text-purple-700 transition"><Link to="/products">Products</Link></li>
+          <li className="hover:text-purple-700 transition"><Link to="/add-product">Create Form</Link></li>
+          <li className="hover:text-purple-700 transition"><Link to="/auth/login">Login</Link></li>
+        </ul>
+
+        {/* Mobile Toggle Button */}
+        <div className="md:hidden text-2xl z-50 text-purple-700">
+          {toggle ? (
+            <IoMdClose onClick={() => setToggle(false)} className="cursor-pointer" />
+          ) : (
+            <FaBars onClick={() => setToggle(true)} className="cursor-pointer" />
+          )}
+        </div>
+      </div>
+
+      {/* Mobile Sidebar */}
+      <ul
+        className={`fixed top-0 right-0 w-[70%] h-screen bg-white shadow-lg flex flex-col items-center justify-center gap-10 text-lg font-medium text-gray-700 transition-all duration-300 ease-in-out md:hidden ${
+          toggle ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        <li onClick={() => setToggle(false)} className="hover:text-purple-700 transition"><Link to="/">Home</Link></li>
+        <li onClick={() => setToggle(false)} className="hover:text-purple-700 transition"><Link to="/products">Products</Link></li>
+        <li onClick={() => setToggle(false)} className="hover:text-purple-700 transition"><Link to="/add-product">Create Form</Link></li>
+        <li onClick={() => setToggle(false)} className="hover:text-purple-700 transition"><Link to="/auth/login">Login</Link></li>
       </ul>
-    </div>
+    </header>
     </>
   )
 }

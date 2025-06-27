@@ -47,7 +47,7 @@ const Products = () => {
       : products.filter((item) => item.category === selectedCategory);
 
   return (
-<div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-black p-4">
+<div className="min-h-screen pt-20 bg-gradient-to-br from-indigo-900 via-purple-900 to-black p-4">
   <div className="flex flex-col sm:flex-row gap-4 mb-6 items-center">
     <select 
       onChange={(e) => setSelectedCategory(e.target.value)}
